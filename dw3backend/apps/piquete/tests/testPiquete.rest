@@ -1,0 +1,45 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Listar todos os piquetes
+GET http://localhost:40000/getAllPiquete
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Buscar piquete por ID
+GET http://localhost:40000/getPiqueteByID/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Cadastrar piquete
+POST http://localhost:40000/insertPiquete
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Piquete 02",
+    "latitude": -10.422,
+    "longitude": -49.972,
+    "pastoid": 1
+}
+
+### Atualizar piquete
+PUT http://localhost:40000/updatePiquete/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Piquete 01 Atualizado",
+    "latitude": -20.425,
+    "longitude": -49.975,
+    "pastoid": 1
+}
+
+### Excluir piquete
+DELETE http://localhost:40000/deletePiquete/1
+Authorization: Bearer {{login.response.body.$.token}}

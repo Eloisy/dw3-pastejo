@@ -1,0 +1,43 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Listar todos os pastos
+GET http://localhost:40000/getAllPasto
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Buscar pasto por ID
+GET http://localhost:40000/getPastoByID/2
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Cadastrar pasto
+POST http://localhost:40000/insertPasto
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Pasto Principal",
+    "areatotal": 50.00,
+    "ativo": true
+}
+
+### Atualizar pasto
+PUT http://localhost:40000/updatePasto/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Pasto Principal Atualizado",
+    "areatotal": 60.00,
+    "ativo": true
+}
+
+### Excluir pasto
+DELETE http://localhost:40000/deletePasto/1
+Authorization: Bearer {{login.response.body.$.token}}

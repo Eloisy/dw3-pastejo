@@ -1,0 +1,47 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Listar todos os alocados
+GET http://localhost:40000/getAllAlocado
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Buscar alocado por ID
+GET http://localhost:40000/getAlocadoByID/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Cadastrar alocado
+POST http://localhost:40000/insertAlocado
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Alocação do Boi Nelore",
+    "datainicio": "2026-11-24",
+    "datafinal": "2026-12-24",
+    "animalid": 1,
+    "piqueteid": 1
+}
+
+### Atualizar alocado
+PUT http://localhost:40000/updateAlocado/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "descricao": "Alocação atualizada",
+    "datainicio": "2026-11-25",
+    "datafinal": "2026-12-30",
+    "animalid": 1,
+    "piqueteid": 1
+}
+
+### Excluir alocado
+DELETE http://localhost:40000/deleteAlocado/1
+Authorization: Bearer {{login.response.body.$.token}}

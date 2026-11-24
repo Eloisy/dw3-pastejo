@@ -1,0 +1,41 @@
+### Fazer login
+# @name login
+POST http://localhost:40000/Login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Listar todos os animais
+GET http://localhost:40000/getAllAnimal
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Buscar animal por ID
+GET http://localhost:40000/getAnimalByID/1
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Cadastrar animal
+POST http://localhost:40000/insertAnimal
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "nome": "Boi Nelore",
+    "datanascimento": "2022-05-10"
+}
+
+### Atualizar animal
+PUT http://localhost:40000/updateAnimal/1
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "nome": "Boi Nelore Atualizado",
+    "datanascimento": "2022-06-15"
+}
+
+### Excluir animal
+DELETE http://localhost:40000/deleteAnimal/1
+Authorization: Bearer {{login.response.body.$.token}}
